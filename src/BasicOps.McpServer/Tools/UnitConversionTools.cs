@@ -1,3 +1,6 @@
+using System.ComponentModel;
+using ModelContextProtocol.Server;
+
 namespace BasicOps.McpServer.Tools;
 
 internal class UnitConversionTools
@@ -24,49 +27,372 @@ internal class UnitConversionTools
     private const decimal _B_TO_KB = 1024M;
     private const decimal _B_TO_MB = 1024M * 1024M;
     private const decimal _MB_TO_GB = 1024M;
+
+    [McpServerTool]
+    [Description("Converts meters to kilometers.")]
+    public decimal MetersToKilometers(
+        [Description("Distance in meters")] decimal m)
+    {
+        return m / _M_TO_KM;
+    }
+
+    [McpServerTool]
+    [Description("Converts kilometers to meters.")]
+    public decimal KilometersToMeters(
+        [Description("Distance in kilometers")] decimal km)
+    {
+        return km * _M_TO_KM;
+    }
+
+    [McpServerTool]
+    [Description("Converts meters to miles.")]
+    public decimal MetersToMiles(
+        [Description("Distance in meters")] decimal m)
+    {
+        return m / _M_TO_MILES;
+    }
+
+    [McpServerTool]
+    [Description("Converts miles to meters.")]
+    public decimal MilesToMeters(
+        [Description("Distance in miles")] decimal mi)
+    {
+        return mi * _M_TO_MILES;
+    }
+
+    [McpServerTool]
+    [Description("Converts kilometers to miles.")]
+    public decimal KilometersToMiles(
+        [Description("Distance in kilometers")] decimal km)
+    {
+        return km / _KM_TO_MILES;
+    }
+
+    [McpServerTool]
+    [Description("Converts miles to kilometers.")]
+    public decimal MilesToKilometers(
+        [Description("Distance in miles")] decimal mi)
+    {
+        return mi * _KM_TO_MILES;
+    }
+
+    [McpServerTool]
+    [Description("Converts degrees Celsius to degrees Fahrenheit.")]
+    public decimal CelsiusToFahrenheit(
+        [Description("Temperature in degrees Celsius")] decimal c)
+    {
+        return c * _C_TO_F + 32;
+    }
+
+    [McpServerTool]
+    [Description("Converts degrees Fahrenheit to degrees Celsius.")]
+    public decimal FahrenheitToCelsius(
+        [Description("Temperature in degrees Fahrenheit")] decimal f)
+    {
+        return (f - 32) * _F_TO_C;
+    }
+
+    [McpServerTool]
+    [Description("Converts degrees Celsius to kelvins.")]
+    public decimal CelsiusToKelvin(
+        [Description("Temperature in degrees Celsius")] decimal c)
+    {
+        return c + _C_TO_K;
+    }
+
+    [McpServerTool]
+    [Description("Converts kelvins to degrees Celsius.")]
+    public decimal KelvinToCelsius(
+        [Description("Temperature in kelvins")] decimal k)
+    {
+        return k - _C_TO_K;
+    }
+
+    [McpServerTool]
+    [Description("Converts degrees Fahrenheit to kelvins.")]
+    public decimal FahrenheitToKelvin(
+        [Description("Temperature in degrees Fahrenheit")] decimal f)
+    {
+        return (f - 32) * _F_TO_C + _C_TO_K;
+    }
+
+    [McpServerTool]
+    [Description("Converts kelvins to degrees Fahrenheit.")]
+    public decimal KelvinToFahrenheit(
+        [Description("Temperature in kelvins")] decimal k)
+    {
+        return (k - _C_TO_K) * _C_TO_F + 32;
+    }
+
+    [McpServerTool]
+    [Description("Converts kilograms to grams.")]
+    public decimal KgToGrams(
+        [Description("Mass in kilograms")] decimal kg)
+    {
+        return kg * _KG_TO_G;
+    }
+
+    [McpServerTool]
+    [Description("Converts grams to kilograms.")]
+    public decimal GramsToKg(
+        [Description("Mass in grams")] decimal g)
+    {
+        return g / _KG_TO_G;
+    }
+
+    [McpServerTool]
+    [Description("Converts kilograms to pounds.")]
+    public decimal KgToPounds(
+        [Description("Mass in kilograms")] decimal kg)
+    {
+        return kg * _KG_TO_LB;
+    }
+
+    [McpServerTool]
+    [Description("Converts pounds to kilograms.")]
+    public decimal PoundsToKg(
+        [Description("Mass in pounds")] decimal lb)
+    {
+        return lb / _KG_TO_LB;
+    }
+
+    [McpServerTool]
+    [Description("Converts kilograms to stone.")]
+    public decimal KgToStone(
+        [Description("Mass in kilograms")] decimal kg)
+    {
+        return kg * _KG_TO_ST;
+    }
+
+    [McpServerTool]
+    [Description("Converts stone to kilograms.")]
+    public decimal StoneToKg(
+        [Description("Mass in stone")] decimal st)
+    {
+        return st / _KG_TO_ST;
+    }
+
+    [McpServerTool]
+    [Description("Converts kilometers per hour to miles per hour.")]
+    public decimal KmphToMph(
+        [Description("Speed in kilometers per hour")] decimal kmh)
+    {
+        return kmh / _KMH_TO_MH;
+    }
+
+    [McpServerTool]
+    [Description("Converts miles per hour to kilometers per hour.")]
+    public decimal MphToKmph(
+        [Description("Speed in miles per hour")] decimal mph)
+    {
+        return mph * _KMH_TO_MH;
+    }
+
+    [McpServerTool]
+    [Description("Converts meters per second to kilometers per hour.")]
+    public decimal MsToKmph(
+        [Description("Speed in meters per second")] decimal ms)
+    {
+        return ms * _MS_TO_KMH;
+    }
+
+    [McpServerTool]
+    [Description("Converts kilometers per hour to meters per second.")]
+    public decimal KmphToMs(
+        [Description("Speed in kilometers per hour")] decimal kmh)
+    {
+        return kmh / _MS_TO_KMH;
+    }
+
+    [McpServerTool]
+    [Description("Converts square meters to square kilometers.")]
+    public decimal SqMetersToSqKm(
+        [Description("Area in square meters")] decimal m2)
+    {
+        return m2 / _SQ_M_TO_SQ_KM;
+    }
+
+    [McpServerTool]
+    [Description("Converts square kilometers to square meters.")]
+    public decimal SqKmToSqMeters(
+        [Description("Area in square kilometers")] decimal km2)
+    {
+        return km2 * _SQ_M_TO_SQ_KM;
+    }
+
+    [McpServerTool]
+    [Description("Converts square meters to square miles.")]
+    public decimal SqMetersToSqMiles(
+        [Description("Area in square meters")] decimal m2)
+    {
+        return m2 / _SQ_M_TO_SQ_MILES;
+    }
+
+    [McpServerTool]
+    [Description("Converts square miles to square meters.")]
+    public decimal SqMilesToSqMeters(
+        [Description("Area in square miles")] decimal mi2)
+    {
+        return mi2 * _SQ_M_TO_SQ_MILES;
+    }
+
+    [McpServerTool]
+    [Description("Converts liters to milliliters.")]
+    public decimal LitersToMilliliters(
+        [Description("Volume in liters")] decimal l)
+    {
+        return l * _L_TO_ML;
+    }
+
+    [McpServerTool]
+    [Description("Converts milliliters to liters.")]
+    public decimal MillilitersToLiters(
+        [Description("Volume in milliliters")] decimal ml)
+    {
+        return ml / _L_TO_ML;
+    }
+
+    [McpServerTool]
+    [Description("Converts liters to gallons.")]
+    public decimal LitersToGallons(
+        [Description("Volume in liters")] decimal l)
+    {
+        return l * _L_TO_GAL;
+    }
+
+    [McpServerTool]
+    [Description("Converts gallons to liters.")]
+    public decimal GallonsToLiters(
+        [Description("Volume in gallons")] decimal gal)
+    {
+        return gal / _L_TO_GAL;
+    }
+
+    [McpServerTool]
+    [Description("Converts pascals to bar.")]
+    public decimal PascalToBar(
+        [Description("Pressure in pascals")] decimal pa)
+    {
+        return pa / _PA_TO_BAR;
+    }
+
+    [McpServerTool]
+    [Description("Converts bar to pascals.")]
+    public decimal BarToPascal(
+        [Description("Pressure in bar")] decimal bar)
+    {
+        return bar * _PA_TO_BAR;
+    }
+
+    [McpServerTool]
+    [Description("Converts pascals to pounds per square inch (psi).")]
+    public decimal PascalToPSI(
+        [Description("Pressure in pascals")] decimal pa)
+    {
+        return pa / _PA_TO_PSI;
+    }
+
+    [McpServerTool]
+    [Description("Converts pounds per square inch (psi) to pascals.")]
+    public decimal PSIToPascal(
+        [Description("Pressure in pounds per square inch (psi)")] decimal psi)
+    {
+        return psi * _PA_TO_PSI;
+    }
+
+    [McpServerTool]
+    [Description("Converts joules to calories.")]
+    public decimal JoulesToCalories(
+        [Description("Energy in joules")] decimal j)
+    {
+        return j / _J_TO_CAL;
+    }
+
+    [McpServerTool]
+    [Description("Converts calories to joules.")]
+    public decimal CaloriesToJoules(
+        [Description("Energy in calories")] decimal cal)
+    {
+        return cal * _J_TO_CAL;
+    }
+
+    [McpServerTool]
+    [Description("Converts joules to kilowatt-hours.")]
+    public decimal JoulesToKWh(
+        [Description("Energy in joules")] decimal j)
+    {
+        return j / _J_TO_KWH;
+    }
+
+    [McpServerTool]
+    [Description("Converts kilowatt-hours to joules.")]
+    public decimal KWhToJoules(
+        [Description("Energy in kilowatt-hours")] decimal kwh)
+    {
+        return kwh * _J_TO_KWH;
+    }
+
+    [McpServerTool]
+    [Description("Converts bytes to kilobytes.")]
+    public decimal BytesToKilobytes(
+        [Description("Data size in bytes")] decimal b)
+    {
+        return b / _B_TO_KB;
+    }
+
+    [McpServerTool]
+    [Description("Converts kilobytes to bytes.")]
+    public decimal KilobytesToBytes(
+        [Description("Data size in kilobytes")] decimal kb)
+    {
+        return kb * _B_TO_KB;
+    }
+
+    [McpServerTool]
+    [Description("Converts bytes to megabytes.")]
+    public decimal BytesToMegabytes(
+        [Description("Data size in bytes")] decimal b)
+    {
+        return b / _B_TO_MB;
+    }
+
+    [McpServerTool]
+    [Description("Converts megabytes to bytes.")]
+    public decimal MegabytesToBytes(
+        [Description("Data size in megabytes")] decimal mb)
+    {
+        return mb * _B_TO_MB;
+    }
+
+    [McpServerTool]
+    [Description("Converts megabytes to gigabytes.")]
+    public decimal MegabytesToGigabytes(
+        [Description("Data size in megabytes")] decimal mb)
+    {
+        return mb / _MB_TO_GB;
+    }
+
+    [McpServerTool]
+    [Description("Converts gigabytes to megabytes.")]
+    public decimal GigabytesToMegabytes(
+        [Description("Data size in gigabytes")] decimal gb)
+    {
+        return gb * _MB_TO_GB;
+    }
     
-    public decimal MetersToKilometers(decimal m) => m / _M_TO_KM;
-    public decimal KilometersToMeters(decimal km) => km * _M_TO_KM;
-    public decimal MetersToMiles(decimal m) => m / _M_TO_MILES;
-    public decimal MilesToMeters(decimal mi) => mi * _M_TO_MILES;
-    public decimal KilometersToMiles(decimal km) => km / _KM_TO_MILES;
-    public decimal MilesToKilometers(decimal mi) => mi * _KM_TO_MILES;
-    public decimal CelsiusToFahrenheit(decimal c) => c * _C_TO_F + 32;
-    public decimal FahrenheitToCelsius(decimal f) => (f - 32) * _F_TO_C;
-    public decimal CelsiusToKelvin(decimal c) => c + _C_TO_K;
-    public decimal KelvinToCelsius(decimal k) => k - _C_TO_K;
-    public decimal FahrenheitToKelvin(decimal f) => (f - 32) * _F_TO_C + _C_TO_K;
-    public decimal KelvinToFahrenheit(decimal k) => (k - _C_TO_K) * _C_TO_F + 32;
-    public decimal KgToGrams(decimal kg) => kg * _KG_TO_G;
-    public decimal GramsToKg(decimal g) => g / _KG_TO_G;
-    public decimal KgToPounds(decimal kg) => kg * _KG_TO_LB;
-    public decimal PoundsToKg(decimal lb) => lb / _KG_TO_LB;
-    public decimal KgToStone(decimal kg) => kg * _KG_TO_ST;
-    public decimal StoneToKg(decimal st) => st / _KG_TO_ST;
-    public decimal KmphToMph(decimal kmh) => kmh / _KMH_TO_MH;
-    public decimal MphToKmph(decimal mph) => mph * _KMH_TO_MH;
-    public decimal MsToKmph(decimal ms) => ms * _MS_TO_KMH;
-    public decimal KmphToMs(decimal kmh) => kmh / _MS_TO_KMH;
-    public decimal SqMetersToSqKm(decimal m2) => m2 / _SQ_M_TO_SQ_KM;
-    public decimal SqKmToSqMeters(decimal km2) => km2 * _SQ_M_TO_SQ_KM;
-    public decimal SqMetersToSqMiles(decimal m2) => m2 / _SQ_M_TO_SQ_MILES;
-    public decimal SqMilesToSqMeters(decimal mi2) => mi2 * _SQ_M_TO_SQ_MILES;
-    public decimal LitersToMilliliters(decimal l) => l * _L_TO_ML;
-    public decimal MillilitersToLiters(decimal ml) => ml / _L_TO_ML;
-    public decimal LitersToGallons(decimal l) => l * _L_TO_GAL;
-    public decimal GallonsToLiters(decimal gal) => gal / _L_TO_GAL;
-    public decimal PascalToBar(decimal pa) => pa / _PA_TO_BAR;
-    public decimal BarToPascal(decimal bar) => bar * _PA_TO_BAR;
-    public decimal PascalToPSI(decimal pa) => pa / _PA_TO_PSI;
-    public decimal PSIToPascal(decimal psi) => psi * _PA_TO_PSI;
-    public decimal JoulesToCalories(decimal j) => j / _J_TO_CAL;
-    public decimal CaloriesToJoules(decimal cal) => cal * _J_TO_CAL;
-    public decimal JoulesToKWh(decimal j) => j / _J_TO_KWH;
-    public decimal KWhToJoules(decimal kwh) => kwh * _J_TO_KWH;
-    public decimal BytesToKilobytes(decimal b) => b / _B_TO_KB;
-    public decimal KilobytesToBytes(decimal kb) => kb * _B_TO_KB;
-    public decimal BytesToMegabytes(decimal b) => b / _B_TO_MB;
-    public decimal MegabytesToBytes(decimal mb) => mb * _B_TO_MB;
-    public decimal MegabytesToGigabytes(decimal mb) => mb / _MB_TO_GB;
-    public decimal GigabytesToMegabytes(decimal gb) => gb * _MB_TO_GB;
+    [McpServerTool]
+    [Description("Converts a UNIX timestamp to DateTime.")]
+    public DateTime UnixTimestampToDateTime(
+        [Description("UNIX timestamp in seconds since 1970-01-01T00:00:00Z")] long ts)
+    {
+        return DateTimeOffset.FromUnixTimeSeconds(ts).UtcDateTime;
+    }
+    
+    [McpServerTool]
+    [Description("Converts a DateTime to UNIX timestamp.")]
+    public long DateTimeToUnixTimestamp(
+        [Description("DateTime to convert (treated as local time if no offset is specified)")] DateTime date)
+    {
+        return new DateTimeOffset(date).ToUnixTimeSeconds();
+    }
 }

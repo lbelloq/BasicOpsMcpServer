@@ -54,7 +54,7 @@ internal class JwtTools
     
     [McpServerTool]
     [Description("List the claims a JWT has.")]
-    public Dictionary<string, string> ListJwtClaims(
+    public IDictionary<string, string> ListJwtClaims(
         [Description("JWT")] string jwt
     )
     {

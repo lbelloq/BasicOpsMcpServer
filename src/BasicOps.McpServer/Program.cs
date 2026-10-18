@@ -1,10 +1,7 @@
-using System.Reflection;
 using BasicOps.McpServer.Tools;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-
-var assembly = Assembly.GetExecutingAssembly();
 
 var builder = Host.CreateApplicationBuilder(args);
 
@@ -20,6 +17,7 @@ builder.Services
     .WithTools<ComparisonTools>()
     .WithTools<JwtTools>()
     .WithTools<StringTools>()
+    .WithTools<UnitConversionTools>()
     ;
 
 await builder.Build().RunAsync();

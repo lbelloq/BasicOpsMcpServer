@@ -1,6 +1,6 @@
 # Basic Tools MCP Server
 
-An [MCP](https://modelcontextprotocol.io/) (Model Context Protocol) server that exposes a set of basic utility tools to AI agents: random value generation, arithmetic operations on numbers, comparisons for numbers, datetimes, and timespans, string manipulation, plus JWT validation and inspection. It communicates over the `stdio` transport and is built as a self-contained .NET application, so no .NET runtime needs to be installed on the target machine.
+An [MCP](https://modelcontextprotocol.io/) (Model Context Protocol) server that exposes a set of basic utility tools to AI agents: random value generation, arithmetic operations on numbers, comparisons for numbers, datetimes, and timespans, string manipulation, unit conversions, plus JWT validation and inspection. It communicates over the `stdio` transport and is built as a self-contained .NET application, so no .NET runtime needs to be installed on the target machine.
 
 ## Features
 
@@ -30,12 +30,58 @@ An [MCP](https://modelcontextprotocol.io/) (Model Context Protocol) server that 
 | `timespan_less_than_or_equal`    | Compares two timespans and returns whether the first is smaller than, or equal to, the second.                  |
 | `timespan_greater_than`          | Compares two timespans and returns whether the first is greater than the second.                                |
 | `timespan_greater_than_or_equal` | Compares two timespans and returns whether the first is greater than, or equal to, the second.                  |
-| `get_string_length`              | Returns the provided string's length, measured in visible characters rather than bytes.                        |
-| `string_to_uppercase`            | Returns the provided string converted to uppercase.                                                            |
-| `string_to_lowercase`            | Returns the provided string converted to lowercase.                                                            |
+| `get_string_length`              | Returns the provided string's length, measured in visible characters rather than bytes.                         |
+| `string_to_uppercase`            | Returns the provided string converted to uppercase.                                                             |
+| `string_to_lowercase`            | Returns the provided string converted to lowercase.                                                             |
 | `validate_jwt`                   | Validates a JWT using the specified Base64 signing key, with optional lifetime, audience and issuer checks.     |
 | `list_jwt_claims`                | Lists the claims a JWT has, as key/value pairs.                                                                 |
 | `get_jwt_expiration_date`        | Returns the JWT's expiration date, or null if the token has no exp claim.                                       |
+| `meters_to_kilometers`           | Converts meters to kilometers.                                                                                  |
+| `kilometers_to_meters`           | Converts kilometers to meters.                                                                                  |
+| `meters_to_miles`                | Converts meters to miles.                                                                                       |
+| `miles_to_meters`                | Converts miles to meters.                                                                                       |
+| `kilometers_to_miles`            | Converts kilometers to miles.                                                                                   |
+| `miles_to_kilometers`            | Converts miles to kilometers.                                                                                   |
+| `celsius_to_fahrenheit`          | Converts degrees Celsius to degrees Fahrenheit.                                                                 |
+| `fahrenheit_to_celsius`          | Converts degrees Fahrenheit to degrees Celsius.                                                                 |
+| `celsius_to_kelvin`              | Converts degrees Celsius to kelvins.                                                                            |
+| `kelvin_to_celsius`              | Converts kelvins to degrees Celsius.                                                                            |
+| `fahrenheit_to_kelvin`           | Converts degrees Fahrenheit to kelvins.                                                                         |
+| `kelvin_to_fahrenheit`           | Converts kelvins to degrees Fahrenheit.                                                                         |
+| `kg_to_grams`                    | Converts kilograms to grams.                                                                                    |
+| `grams_to_kg`                    | Converts grams to kilograms.                                                                                    |
+| `kg_to_pounds`                   | Converts kilograms to pounds.                                                                                   |
+| `pounds_to_kg`                   | Converts pounds to kilograms.                                                                                   |
+| `kg_to_stone`                    | Converts kilograms to stone.                                                                                    |
+| `stone_to_kg`                    | Converts stone to kilograms.                                                                                    |
+| `kmph_to_mph`                    | Converts kilometers per hour to miles per hour.                                                                 |
+| `mph_to_kmph`                    | Converts miles per hour to kilometers per hour.                                                                 |
+| `ms_to_kmph`                     | Converts meters per second to kilometers per hour.                                                              |
+| `kmph_to_ms`                     | Converts kilometers per hour to meters per second.                                                              |
+| `sq_meters_to_sq_km`             | Converts square meters to square kilometers.                                                                    |
+| `sq_km_to_sq_meters`             | Converts square kilometers to square meters.                                                                    |
+| `sq_meters_to_sq_miles`          | Converts square meters to square miles.                                                                         |
+| `sq_miles_to_sq_meters`          | Converts square miles to square meters.                                                                         |
+| `liters_to_milliliters`          | Converts liters to milliliters.                                                                                 |
+| `milliliters_to_liters`          | Converts milliliters to liters.                                                                                 |
+| `liters_to_gallons`              | Converts liters to gallons.                                                                                     |
+| `gallons_to_liters`              | Converts gallons to liters.                                                                                     |
+| `pascal_to_bar`                  | Converts pascals to bar.                                                                                        |
+| `bar_to_pascal`                  | Converts bar to pascals.                                                                                        |
+| `pascal_to_psi`                  | Converts pascals to pounds per square inch (psi).                                                               |
+| `psi_to_pascal`                  | Converts pounds per square inch (psi) to pascals.                                                               |
+| `joules_to_calories`             | Converts joules to calories.                                                                                    |
+| `calories_to_joules`             | Converts calories to joules.                                                                                    |
+| `joules_to_k_wh`                 | Converts joules to kilowatt-hours.                                                                              |
+| `k_wh_to_joules`                 | Converts kilowatt-hours to joules.                                                                              |
+| `bytes_to_kilobytes`             | Converts bytes to kilobytes.                                                                                    |
+| `kilobytes_to_bytes`             | Converts kilobytes to bytes.                                                                                    |
+| `bytes_to_megabytes`             | Converts bytes to megabytes.                                                                                    |
+| `megabytes_to_bytes`             | Converts megabytes to bytes.                                                                                    |
+| `megabytes_to_gigabytes`         | Converts megabytes to gigabytes.                                                                                |
+| `gigabytes_to_megabytes`         | Converts gigabytes to megabytes.                                                                                |
+| `unix_timestamp_to_date_time`    | Converts a UNIX timestamp to DateTime.                                                                          |
+| `date_time_to_unix_timestamp`    | Converts a DateTime to UNIX timestamp.                                                                          |
 
 ## Why does this exist
 
@@ -55,20 +101,41 @@ TODO
 
 ### Configuration
 
-TODO
+No configuration needed for development.
 
 ### Testing the server
 
-TODO
+- Publish the app.
+- Copy the resulting binary to a directory of your preference.
+- Create in the same directoy the file needed for your agent to reocgnize the MCP server.
+    - Opencode example:
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "basic-ops": {
+      "type": "local",
+      "command": [ "./BasicOps.McpServer" ],
+      "enabled": true
+    }
+  },
+  "tools": {
+    "basic-ops": true
+  }
+```
+
+- Run your agent and check the MCP is active.
+- Invoke the MCP's tools.
 
 ## Technical details
 
-| Component                                                                                                     | Version          |
-|---------------------------------------------------------------------------------------------------------------|------------------|
-| .NET (target framework)                                                                                       | 10.0 (`net10.0`) |
-| [Microsoft.Extensions.Hosting](https://www.nuget.org/packages/Microsoft.Extensions.Hosting)                   | 8.0.1            |
-| [ModelContextProtocol](https://www.nuget.org/packages/ModelContextProtocol) (MCP C# SDK)                      | 1.2.0            |
-| [Microsoft.IdentityModel.JsonWebTokens](https://www.nuget.org/packages/Microsoft.IdentityModel.JsonWebTokens) | 1.2.0            |
+| Component                                                                                                     | Version |
+|---------------------------------------------------------------------------------------------------------------|---------|
+| .NET (target framework)                                                                                       | 10.0    |
+| [Microsoft.Extensions.Hosting](https://www.nuget.org/packages/Microsoft.Extensions.Hosting)                   | 8.0.1   |
+| [ModelContextProtocol](https://www.nuget.org/packages/ModelContextProtocol) (MCP C# SDK)                      | 1.2.0   |
+| [Microsoft.IdentityModel.JsonWebTokens](https://www.nuget.org/packages/Microsoft.IdentityModel.JsonWebTokens) | 1.2.0   |
 
 - **Transport**: `stdio` (protocol messages on stdout, logs on stderr)
 - **Deployment**: self-contained single-file executable; no shared .NET runtime required on the target machine
